@@ -27,8 +27,10 @@ export const renderSignupView = (req, res) => {
 
 }
 export const createUser = async (req, res) => {
+
   const { name, password } = req.body;
   const newUserModel = new UserModel({ name, password })
+
   try {
     await newUserModel.save();
     console.log("success")
