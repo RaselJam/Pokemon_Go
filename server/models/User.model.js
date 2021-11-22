@@ -3,6 +3,7 @@ const userSchema = mongoose.Schema({
   //TODOAdd more details  to the model
   userName: {
     type: String,
+    unique: true
   },
   role: {
     type: String,
@@ -16,6 +17,8 @@ const userSchema = mongoose.Schema({
   coins: {
     type: Number,
     required: true,
+    min: 0,
+    max: 20000,
     default: 0,
   },
   //TODO investigate more about Ref:
@@ -23,7 +26,6 @@ const userSchema = mongoose.Schema({
   //   type: [mongoose.SchemaTypes.ObjectId],
   //   ref: "Pokemon",
   // }
-
 
 })
 var User = mongoose.model('User', userSchema);
