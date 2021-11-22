@@ -11,8 +11,9 @@ A Browesr based Game inspired by Pokemon Go
 |Post     | /login   | Lleva al usuario a la pagina de su perfil.
 | Get      | /user   | Pagina de perfil del usuario logeado.
 | Get      | /admin  | Panel de control(pagina) del admin.
-| Get     | /pokemons  | Muestra una vista de todos los pokemons.
-| Get    | /pokemons/id | Muestra los detalles de un pokemon especifico.
-| Post   | /pokemons/id |Pagina para editar un pokemon.
-|Get     | /food   | Pagina de vista de toda la comida y tipos.|
+| Get     | /pokemons  | Muestra una vista de todos los pokemons.Acepta filtros
+| Get    | /pokemons/id | Muestra los detalles de un pokemon especifico. Demuestra formulario de POST
+| Post   | /pokemons/id |Actulaiza un pokemon.
+|Get     | /food   | retorna el Array de todas la comidas disponiblesen BBDD.|
 | Get      | /food/id   | Detalles e info de esa comida especifica.|
+| POST|/food/id |Actualiza un Food yel User quelo Hizo.|
