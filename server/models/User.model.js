@@ -6,20 +6,23 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['player', 'admin'],
-    default: 'player',
+    enum: ['PLAYER', 'ADMIN'],
+    default: 'PLAYER',
     required: true,
   },
+
   password: String,
+  //TODO add min max:
   coins: {
     type: Number,
     required: true,
     default: 0,
   },
-  pokemons: {
-    type: [mongoose.SchemaTypes.ObjectId],
-    ref: "Pokemon",
-  }
+  //TODO investigate more about Ref:
+  // pokemons: {
+  //   type: [mongoose.SchemaTypes.ObjectId],
+  //   ref: "Pokemon",
+  // }
 
 
 })
