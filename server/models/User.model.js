@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     type: String,
     enum: ['PLAYER', 'ADMIN'],
     default: 'PLAYER',
-    required: true,
+    //required: true,
   },
 
   password: String,
