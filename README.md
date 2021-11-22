@@ -9,6 +9,7 @@ A Browesr based Game inspired by Pokemon Go
 | Post     | /signup | Guarda en la BBDD un usuario|
 | Get    | /login    | Muestra la página para ingresar como usuario.        |
 |Post     | /login   | Lleva al usuario a la pagina de su perfil.
+|post     |logout| logout the user and redirect to home
 | Get      | /user   | Pagina de perfil del usuario logeado.
 | Get      | /admin  | Panel de control(pagina) del admin.
 | Get     | /pokemons  | Muestra una vista de todos los pokemons.Acepta filtros
