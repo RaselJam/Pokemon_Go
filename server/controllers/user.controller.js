@@ -19,9 +19,9 @@ export const getUsers = async (req, res) => {
   }
 }
 export const createUser = async (req, res) => {
-  const { name, password } = req.body;
-  console.log(" Revived to server :", name, password);
-  const newUserModel = new UserModel({ name, password })
+  const { userName, password } = req.body;
+  console.log(" Revived to server :", userName, password);
+  const newUserModel = new UserModel({ userName, password })
   try {
     await newUserModel.save();
     console.log("success")
