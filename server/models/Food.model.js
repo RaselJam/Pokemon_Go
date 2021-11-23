@@ -21,6 +21,8 @@ const foodSchema = mongoose.Schema({
     },
     coordinates: {
       type: [Number],
+      //IronHack madrid as deafult :
+      default: [40.392604, -3.698713],
       required: true
     }
   }

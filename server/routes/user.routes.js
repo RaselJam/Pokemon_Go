@@ -1,41 +1,38 @@
 import express from 'express';
-import { getUsers, createUser, renderSignupView, renderLoginview, checkCredentials, logout, modifyCoins, renderProfile, toggleAdminRole,claimFood } from '../controllers/user.controller.js';
+import * as userlogic from '../controllers/user.controller.js';
 const router = express.Router();
 
-router.get('/login', renderLoginview)
-router.post('/login', checkCredentials)
-router.get('/logout', logout)
-router.get('/signup', renderSignupView);
-router.post('/signup', createUser);
+router.get('/login', userlogic.renderLoginview)
+router.post('/login', userlogic.checkCredentials)
+router.get('/logout', userlogic.logout)
+router.get('/signup', userlogic.renderSignupView);
+router.post('/signup', userlogic.createUser);
 ///Protected :
-//TODO limit the access to all below end points :
 //Authenticated :
 router.use((req, res, next) => {
 
   if (req.session.currentUser) {
-    // console.log("user is logedIn continue")
-    // console.log("currentUser :", req.session.currentUser)
     next();
   } else {
     console.log("user is loged out redirect to login")
     renderLoginview(req, res)
   }
 })
-router.get('/profile', renderProfile)
-router.patch('/claimFood', claimFood);
+router.get('/profile', userlogic.renderProfile)
+router.patch('/claimFood', userlogic.claimFood);
+
 //Athorized only Admins :
 router.use((req, res, next) => {
-
-  if (req.session.currentUser[0].role !== 'ADMIN') {
+  console.log("got into gateguard")
+  console.log(req.session.currentUser)
+  if (req.session.currentUser.role !== 'ADMIN') {
     res.status(401).json({ message: "un Authorized. Access denied" })
   }
   else next();
 })
-router.get('/all', getUsers);
-router.patch('/toggle-admin', toggleAdminRole)
+router.post('/all', userlogic.getUsers);
+router.patch('/toggle-admin', userlogic.toggleAdminRole)
 
-// router.get('/:id', getUser);
-// router.patch('/:id', updateUser);
-// router.delete('/:id', deleteUser);
+
 
 export default router;
