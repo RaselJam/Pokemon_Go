@@ -28,19 +28,17 @@ app.use(
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
-      maxAge: 60000*60 // 60 * 1000 ms === 1 min *60 : 1h
+      maxAge: 60000 * 60 // 60 * 1000 ms === 1 min *60 : 1h
     }
   })
 
 )
 
-
-
 app.set('view engine', 'hbs');
 //TODO INVESTIGAR HARDCODEO
-app.set('views',('./views'));
+app.set('views', ('./views'));
 app.use('/users', userRoutes);
-app.get('/', (req, res) => {  res.render('index');});  //const CON
+app.get('/', (req, res) => { res.render('index') });
 
 
 
