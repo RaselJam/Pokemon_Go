@@ -33,10 +33,10 @@ export const checkCredentials = (req, res) => {
   //TODO adde ncyption
   UserModel.find({ userName, password })
     .then(user => {
-      console.log("called db", user)
       if (user) {
         req.session.currentUser = user;
         req.app.locals.isLoggedIn = true;
+        req.app.locals.userName = user.userName;
         renderProfile(req, res)
       } else {
         //Wrong password :
@@ -51,13 +51,14 @@ export const checkCredentials = (req, res) => {
 export const logout = (req, res) => {
   req.session.destroy(err => {
     if (err) next(err);
+    req.app.locals.userName = undefined;
+    req.app.locals.isLoggedIn = false;
     res.redirect('/');
   })
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-  console.log("req.seccion.currentUser", user);
-  res.end();
+   res.render('user-profile', user[0])
 
 }
 

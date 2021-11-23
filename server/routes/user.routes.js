@@ -25,7 +25,8 @@ router.get('/profile', renderProfile)
 //Athorized only Admins :
 router.use((req, res, next) => {
 
-  if (req.session.currentUser.role !== 'ADMIN') {
+  if (req.session.currentUser[0].role !== 'ADMIN') {
+
     res.status(401).json({ message: "un Authorized. Access denied" })
   }
   else next();
