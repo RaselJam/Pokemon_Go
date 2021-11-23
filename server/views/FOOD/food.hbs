@@ -1,1 +1,16 @@
 Aqui iran las cards de comida.
+<div class="container">
+
+
+    <h1 style="font-weight: 100">Lista de comida</h1>
+
+    <!-- ***** CREA UNA FICHA DE LISTA POR CADA FOOD**** -->
+    {{#each food}}
+    <hr>
+    <a href="#" class="btn btn-sm btn-dark">Ver detalles</a>
+    <h4>Nombre de la comida: {{name}}</h4>
+    <p>Descripción de la comida {{description}}</p>
+    <small><strong>Amount: </strong> {{amount}}</small>
+    <hr>
+
+    {{/each}}
