@@ -8,7 +8,6 @@ const router = express.Router();
 //Public Access :
 
 export const renderSignupView = (req, res) => {
-
   res.render('signup')
 }
 //using only once Async await  as refrence,
