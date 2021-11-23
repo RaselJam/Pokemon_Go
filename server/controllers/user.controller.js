@@ -36,6 +36,7 @@ export const checkCredentials = (req, res) => {
       if (user) {
         req.session.currentUser = user;
         req.app.locals.isLoggedIn = true;
+        req.app.locals.isAdmin = user.role === 'ADMIN'
         req.app.locals.userName = user.userName;
         renderProfile(req, res)
       } else {
@@ -53,12 +54,13 @@ export const logout = (req, res) => {
     if (err) next(err);
     req.app.locals.userName = undefined;
     req.app.locals.isLoggedIn = false;
+    req.app.locals.isAdmin = false
     res.redirect('/');
   })
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-   res.render('user-profile', user[0])
+  res.render('user-profile', user[0])
 
 }
 
