@@ -1,7 +1,15 @@
-<div class="p-3 mb-2 bg-secondary text-white text-center">
-    <h1>LISTO PARA LA AVENTURA?</h1>
-    {{#if isLoggedIn}}
+<div class="p-3 mb-2  text-black text-center">
+  {{#unless isLoggedIn}}  <h1>LISTO PARA LA AVENTURA?</h1>
+    <h3>Para empezar a jugar. Registrate</h3>
+</div>
+<div class="imgIndex">
+    <img src="https://i.kym-cdn.com/entries/icons/original/000/028/484/raw.png">
+</div>
+
+<div>
+
+    {{else}}
     <h2> Busca nuevos Pokemons</h2>
     <div id="map"></div>
-    {{/if}}
+    {{/unless}}
 </div>
