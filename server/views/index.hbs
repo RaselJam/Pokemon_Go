@@ -1,1 +1,7 @@
-<div class="p-3 mb-2 bg-secondary text-white text-center">LISTO PARA LA AVENTURA?</div>
+<div class="p-3 mb-2 bg-secondary text-white text-center">
+    <h1>LISTO PARA LA AVENTURA?</h1>
+    {{#if isLoggedIn}}
+    <h2> Busca nuevos Pokemons</h2>
+    <div id="map"></div>
+    {{/if}}
+</div>
