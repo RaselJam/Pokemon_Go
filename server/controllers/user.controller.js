@@ -1,5 +1,6 @@
 import express from 'express';
 import UserModel from "../models/User.model.js";
+import { claim } from '../controllers/food.controller.js'
 
 
 
@@ -34,7 +35,7 @@ export const checkCredentials = (req, res) => {
   UserModel.find({ userName, password })
     .then(user => {
       if (user) {
-        req.session.currentUser = user;
+        req.session.currentUser = user[0];
         req.app.locals.isLoggedIn = true;
         req.app.locals.isAdmin = user.role === 'ADMIN'
         req.app.locals.userName = user.userName;
@@ -60,26 +61,24 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-  res.render('user-profile', user[0])
+  res.render('user-profile', user)
 
 }
 
 //Admin authorized :
-export const updateUser = async (req, res) => {
-  let user = req.body;
-  const userName = user.userName;
-  delete user.userName;
-  UserModel.findOneAndUpdate({ userName: userName }, user)
-    .then(result => {
-      //TODO Render success
-      res.status(200).json(result)
 
-    })
-    .catch(err => res.status(500).json({ message: "Some internall server error.", error: err }))
-}
+//Deprecated:
+// export const updateUser = async (req, res) => {
+
+//   const userName = user.userName;
+//   delete user.userName;
+//   UserModel.findOneAndUpdate({ userName: userName }, user, { new: true })
+//     .then(result => {
+//       res.status(200).json(result)
+//     })
+//     .catch(err => res.status(500).json({ message: "Some internall server error.", error: err }))
+// }
 export const getUsers = async (req, res) => {
-  console.log("enetered to get all users:")
-  //TODO ADD Filter Logic :
   let filter = req.body;
   console.log(filter)
   try {
@@ -93,5 +92,38 @@ export const getUsers = async (req, res) => {
   catch (error) {
     res.status(404).json({ message: error.message });
   }
+}
+/**
+ *recives the ID of user andthe new role all in req.body and udate it in db
+ * @param {*} req
+ * @param {*} res
+ */
+export const toggleAdminRole = (req, res) => {
+
+  const { targetUserId, role } = req.body;
+  console.log("Making Admin...", targetUserId, role)
+
+  UserModel.findByIdAndUpdate(targetUserId, { role: role }, { new: true })
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(error => res.status(404).json({ message: error.message }))
+}
+export const modifyCoins = (req, res) => {
+
+  const { targetUserId, num } = req.body;
+  console.log("modifying : ", targetUserId, num)
+  UserModel.findByIdAndUpdate(targetUserId, { $inc: { 'coins': num } }, { new: true })
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(error => res.status(404).json({ message: error.message }))
+}
+export const claimFood = (req, res) => {
+  const { foodId, location } = req.body;
+  let user = req.session.currentUser;
+  //TODO complete claiming
+
+
 }
 export default router;
