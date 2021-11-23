@@ -26,11 +26,6 @@ export const createUser = async (req, res) => {
 export const renderLoginview = (req, res) => {
   res.render('login')
 }
-/**
- *It will check and log in the user.
- * @param {*} req
- * @param {*} res
- */
 export const checkCredentials = (req, res) => {
   const { userName, password } = req.body
 
@@ -61,7 +56,6 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-
   console.log("req.seccion.currentUser", user);
   res.end();
 
