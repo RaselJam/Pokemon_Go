@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 const userSchema = mongoose.Schema({
-  //TODOAdd more details  to the model
   userName: {
     type: String,
     unique: true
@@ -13,20 +12,13 @@ const userSchema = mongoose.Schema({
   },
 
   password: String,
-  //TODO add min max:
   coins: {
     type: Number,
     required: true,
     min: 0,
     max: 20000,
     default: 0,
-  },
-  //TODO investigate more about Ref:
-  // pokemons: {
-  //   type: [mongoose.SchemaTypes.ObjectId],
-  //   ref: "Pokemon",
-  // }
-
+  }
 })
 var User = mongoose.model('User', userSchema);
 

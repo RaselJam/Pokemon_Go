@@ -32,7 +32,8 @@ const pokemonSchema = mongoose.Schema({
     },
     coordinates: {
       type: [Number],
-      default: [0, 0],
+      //IronHack madrid as deafult :
+      default: [40.392604, -3.698713],
       required: true
     }
   }
