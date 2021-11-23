@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers, createUser, renderSignupView, renderLoginview, checkCredentials, logout, updateUser, renderProfile } from '../controllers/user.controller.js';
+import { getUsers, createUser, renderSignupView, renderLoginview, checkCredentials, logout, modifyCoins, renderProfile, toggleAdminRole,claimFood } from '../controllers/user.controller.js';
 const router = express.Router();
 
 router.get('/login', renderLoginview)
@@ -22,17 +22,17 @@ router.use((req, res, next) => {
   }
 })
 router.get('/profile', renderProfile)
+router.patch('/claimFood', claimFood);
 //Athorized only Admins :
 router.use((req, res, next) => {
 
   if (req.session.currentUser[0].role !== 'ADMIN') {
-
     res.status(401).json({ message: "un Authorized. Access denied" })
   }
   else next();
 })
 router.get('/all', getUsers);
-router.patch('/updateUser', updateUser);
+router.patch('/toggle-admin', toggleAdminRole)
 
 // router.get('/:id', getUser);
 // router.patch('/:id', updateUser);
