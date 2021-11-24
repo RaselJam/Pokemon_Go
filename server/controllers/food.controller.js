@@ -54,14 +54,14 @@ export const renderEditFoodView = (req, res) => {
 
 }
 export const updateFood = (req, res) => {
-  const { foodId, name, description, amount, lat , long} = req.body;
-  const location = { type: "point", coordinates: [lat, long] }
-  console.log("updatig .....", { foodId, name, description, amount, coordinates })
+  const { foodId, name, description, amount, lat, long } = req.body;
+  const location = { type: "Point", coordinates: [+lat, +long] }
+  console.log("updatig .....", { foodId, name, description, amount, location })
   FoodModel.findByIdAndUpdate(foodId, { name, description, amount, location }, { new: true })
     .then(data => {
       res.status(200).json({ message: "food updtaed ", data })
     })
-    .catch(error => res.status(500).json({ message: "internal server Error 500 : " + error.mesage }))
+    .catch(error => res.status(500).json({ message: "internal server Error 500 : " + error }))
 }
 export const deleteFood = (req, res) => {
   const { foodId } = req.body;
