@@ -11,4 +11,17 @@ router.use((req, res, next) => {
     renderLoginview(req, res)
   }
 })
-router.post('/foods', foodLogic.getFoodByFilter)
+//CRUD
+//Create :
+//It uses post as we need to recive a possible filter in body
+router.post('/create', foodLogic.createFood)
+//Read
+router.post('/', (req, res) => {
+  foodLogic.getFoodByFilter(req, res)
+})
+//Update
+router.patch('/update', foodLogic.updateFood)
+//Delete
+router.post('/delete', foodLogic.deleteFood)
+//Read single Food:
+router.get('/:id', foodLogic.renderSingleFood)

@@ -79,8 +79,6 @@ export const getUsers = (req, res) => {
       res.status(200).json({ message: "List of Users with provided filter from client side", data, filter });
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
-
-
 }
 /**
  *recives the ID of user andthe new role all in req.body and udate it in db
@@ -113,16 +111,13 @@ export const claimFood = (req, res) => {
   let user = req.session.currentUser;
   if (claim(foodId)) {
     //all correct:
-    UserModel.findByIdAndUpdate(user._id, { $inc: { 'coins': num } }, { new: true })
+    UserModel.findByIdAndUpdate(user._id, { $inc: { 'coins': foodAmount } }, { new: true })
       .then(result => {
         res.status(200).json(result)
       })
       .catch(error => res.status(404).json({ message: "error on adjusting user coins amount : " + error.message }))
-
   } else {
     res.status(500).json({ message: "Internal Server Error on deleting Food, see the console on server" })
   }
-
-
 }
 export default router;

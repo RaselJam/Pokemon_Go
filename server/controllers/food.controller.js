@@ -20,6 +20,15 @@ export const getFoodByFilter = (req, res) => {
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
 
 }
+export const renderSingleFood = (req, res) => {
+  const foodId = req.query.id;
+  FoodModel.findById(foodId)
+    .then(data => {
+
+    })
+    .catch(err=> res.status(500).json({message:"Some internal Server Erorr 500:  "+ err.mesage}))
+}
+
 export const updateFood = (req, res) => {
   const { foodId, name, description, amount, coordinates } = req.body;
   const location = { type: "POINT", coordinates }
@@ -37,11 +46,8 @@ export const deleteFood = (req, res) => {
     })
     .catch(error => res.status(500).json({ message: "internal server Error 500 : " + error.mesage }))
 }
-
-
-
 export const claim = (foodId) => {
-  FoodModelUser.findByIdAndRemove(foodId)
+  FoodModel.findByIdAndRemove(foodId)
     .then((deletedFood) => {
       onFoodDeleted(deletedFood)
       return true;
@@ -52,11 +58,10 @@ export const claim = (foodId) => {
     })
 
 }
-///Fo feature Axios SPA updating, We decided to use Form to edit the whole object:
 export const movefoodTo = (req, res) => {
   const { foodId, coordinates } = req.body;
   const location = { type: "POINT", coordinates }
-  FoodModel.findByIdAndUpdate(foodId, { location }, { new: true })
+  FoodModel.findByIdAndUpdate(fooId, { location }, { new: true })
     .then(data => {
       res.status(200).json({ message: "food moved Successfully", data })
     })
