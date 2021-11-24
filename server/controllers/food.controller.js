@@ -43,7 +43,7 @@ export const renderEditFoodView = (req, res) => {
   const foodId = req.params.id;
   FoodModel.findById(foodId)
     .then((food) => {
-      console.log("found Food :",food)
+      console.log("found Food :", food)
       res.render('FOOD/food-edit', food)
 
     }
@@ -54,9 +54,9 @@ export const renderEditFoodView = (req, res) => {
 
 }
 export const updateFood = (req, res) => {
-  const { foodId, name, description, amount, coordinates } = req.body;
-  const location = { type: "POINT", coordinates }
-  console.log("updatig .....",{ foodId, name, description, amount, coordinates })
+  const { foodId, name, description, amount, lat , long} = req.body;
+  const location = { type: "point", coordinates: [lat, long] }
+  console.log("updatig .....", { foodId, name, description, amount, coordinates })
   FoodModel.findByIdAndUpdate(foodId, { name, description, amount, location }, { new: true })
     .then(data => {
       res.status(200).json({ message: "food updtaed ", data })
