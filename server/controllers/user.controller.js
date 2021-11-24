@@ -50,8 +50,11 @@ export const checkCredentials = (req, res) => {
         // res.status(401).json({ message: "wrong pass" })
       }
 
+    }).catch(err => {
+      console.log(err)
+
     })
-    .catch(err => res.status(500).json({ message: "Some internall server error.", error: err }))
+  // .catch(err => res.status(500).json({ err }))
 }
 //Authenticated :
 export const logout = (req, res) => {
@@ -65,14 +68,12 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-  const userPokemons = []
+  let userPokemons = []
   userPokemons = pokemonLogic.getMyPokemons(user._id);
-  res.render('user-profile', { user, pokemons })
+  res.render('user-profile', { user, pokemons: userPokemons })
 }
 
 //Admin authorized :
-
-
 export const getUsers = (req, res) => {
   let filter = req.body;
   UserModel.find(filter)
@@ -80,6 +81,11 @@ export const getUsers = (req, res) => {
       res.status(200).json({ message: "List of Users with provided filter from client side", data, filter });
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
+}
+export const renderAdminContolPanel = () => {
+  const users = getUsersList();
+  const pokemons = pokemonLogic.getPokemonsList();
+  res.render('control-panel')
 }
 /**
  *recives the ID of user andthe new role all in req.body and udate it in db
@@ -120,5 +126,20 @@ export const claimFood = (req, res) => {
   } else {
     res.status(500).json({ message: "Internal Server Error on deleting Food, see the console on server" })
   }
+}
+//
+//helpers
+export const getUsersList = () => {
+
+  UserModel.find()
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      console.log("internal server Error")
+      return;
+    })
+
+
 }
 export default router;

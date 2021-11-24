@@ -87,12 +87,21 @@ export const claimPokemon = (req, res) => {
     }).catch(err => res.status(500).json({ message: "Internall Server Error", error: err }))
 
 }
+//helpers :
+export const getPokemonsList = () => {
+
+  PokemonModel.find()
+    .then(data => data)
+    .catch(err => {
+      console.log("internal server error: " + err)
+    })
+}
 /**
  *
  * @param {the User ID} ownerId
  */
 export const getMyPokemons = (ownerId) => {
-  PokemonModel.find({ownerId:ownerId})
+  PokemonModel.find({ ownerId: ownerId })
     .then(data => {
       return data;
     })
