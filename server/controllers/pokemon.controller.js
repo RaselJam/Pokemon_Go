@@ -67,8 +67,12 @@ export const renderAllPokemonView = (req, res) => {
 
 //return JASON :
 export const getPokemons = (req, res) => {
+   console.log("Reached end pint")
   PokemonModel.find()
     .then(pokemons => {
+      console.log("brefor filtering owned", pokemons)
+      pokemons = pokemons.filter(pk => pk.ownerId === ''|| !pk.hasOwnProperty('ownerId'))
+      console.log("after filtering owned", pokemons)
       res.status(200).json({ message: "gotAllPokemons", data: pokemons })
     })
     .catch(err => res.status(500).json({ message: "Internall Server Error", error: err }))

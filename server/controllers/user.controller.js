@@ -2,8 +2,7 @@ import express from 'express';
 import UserModel from "../models/User.model.js";
 import * as pokemonLogic from '../controllers/pokemon.controller.js'
 import { claim } from '../controllers/food.controller.js'
-
-
+import ObjectId from 'mongodb';
 
 const router = express.Router();
 //Public Access :
@@ -39,6 +38,9 @@ export const checkCredentials = (req, res) => {
   UserModel.find({ userName, password })
     .then(user => {
       if (user) {
+
+        const id = new ObjectId.ObjectId(user[0]._id);
+        console.log("user id is  :", id)
         req.session.currentUser = user[0];
         req.app.locals.isLoggedIn = true;
         req.app.locals.isAdmin = user[0].role === 'ADMIN'
@@ -68,8 +70,10 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
+  console.log(("getting users poks:", user._id))
   let userPokemons = []
   userPokemons = pokemonLogic.getMyPokemons(user._id);
+  console.log("my poks :", userPokemons)
   res.render('user-profile', { user, pokemons: userPokemons })
 }
 

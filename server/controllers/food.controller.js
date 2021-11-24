@@ -11,9 +11,9 @@ export const renderCreateFoodView = (req, res) => {
 
 //
 export const createFood = (req, res) => {
-  const { name, description, amount, coordinates } = req.body;
+  const { name, description, amount, lat, long } = req.body;
 
-  const location = { type: "Point", coordinates: coordinates }
+  const location = { type: "Point", coordinates: [+lat, +long] }
   console.log("Creating Food...: ", { name, description, amount, location })
   FoodModel.create({ name, description, amount, location })
     .then(data => {
