@@ -64,3 +64,40 @@ export const renderAllPokemonView = (req, res) => {
 
 
 }
+
+//return JASON :
+export const getPokemons = (req, res) => {
+  PokemonModel.find()
+    .then(pokemons => {
+      res.status(200).json({ message: "gotAllPokemons", data: pokemons })
+    })
+    .catch(err => res.status(500).json({ message: "Internall Server Error", error: err }))
+}
+
+export const claimPokemon = (req, res) => {
+  //TODO add some validation about the correct location and claim
+  const userId = req.session.currentUser._id;
+  const { pokemonId } = req.body;
+  if (!userId) {
+    res.redirect('/users/login');
+  }
+  PokemonModel.findByIdAndUpdate(pokemonId, { location: { coordinates: [0, 0] }, ownerId: userId }, { new: true })
+    .then(pokemon => {
+      res.status(200).json({ message: "Pokemon claimed susccessfully", data: pokemon })
+    }).catch(err => res.status(500).json({ message: "Internall Server Error", error: err }))
+
+}
+/**
+ *
+ * @param {the User ID} ownerId
+ */
+export const getMyPokemons = (ownerId) => {
+  PokemonModel.find({ownerId:ownerId})
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log("intrenal Server Error" + err)
+      return false
+    })
+}

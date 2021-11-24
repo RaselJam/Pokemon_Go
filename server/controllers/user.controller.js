@@ -1,5 +1,6 @@
 import express from 'express';
 import UserModel from "../models/User.model.js";
+import * as pokemonLogic from '../controllers/pokemon.controller.js'
 import { claim } from '../controllers/food.controller.js'
 
 
@@ -64,8 +65,9 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-  res.render('user-profile', user)
-
+  const userPokemons = []
+  userPokemons = pokemonLogic.getMyPokemons(user._id);
+  res.render('user-profile', { user, pokemons })
 }
 
 //Admin authorized :
