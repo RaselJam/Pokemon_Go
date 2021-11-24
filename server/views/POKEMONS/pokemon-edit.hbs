@@ -3,32 +3,43 @@
     <div class="row">
 
         <div class="col-md-6">
-            <h1 style="font-weight: 100">Editar Pokemon</h1>
+            <h1 style="font-weight: 100">Edit Pokemon</h1>
         </div>
 
         <div class="col-md-6">
 
-            <form action="#{{pokemon.id}}" method="POST">
+            <form action="/pokemons/update" method="POST">
+            <input name="pokemonId" value="{{_id}}" type="hidden">
                 <div class="form-group">
                     <label for="name-input">Nombre</label>
-                    <input name="name" type="text" class="form-control" value="{{pokemon.name}}">
+                    <input name="name" type="text" class="form-control" value="{{name}}">
                 </div>
                 <div class="form-group">
                     <label for="description-input">Descripción</label>
-                    <input name="description" type="text" class="form-control" value="{{pokemon.description}}">
+                    <input name="description" type="text" class="form-control" value="{{description}}">
                 </div>
                 <div class="form-group">
                     <label for="speed-input">Speed</label>
-                    <input name="speed" type="number" class="form-control" value="{{pokemon.speed}}">
+                    <input name="speed" type="number" class="form-control" value="{{speed}}">
                 </div>
                 <div class="form-group">
                     <label for="attack-input">Attack</label>
-                    <input name="attack" type="number" class="form-control" value="{{pokemon.attack}}">
+                    <input name="attack" type="number" class="form-control" value="{{attack}}">
                 </div>
                 <div class="form-group">
                     <label for="life-input">Life</label>
-                    <input name="life" type="number" class="form-control" value="{{pokemon.life}}">
+                    <input name="life" type="number" class="form-control" value="{{life}}">
                 </div>
+                <div class="form-group">
+                    <label for="lat">Latitude</label>
+                    <input name="lat" type="text" class="form-control" value="{{location.coordinates.[0]}}">
+                </div>
+                <div class="form-group">
+                    <label for="long">Longitude</label>
+                    <input name="long" type="text" class="form-control" value="{{location.coordinates.[1]}}">
+                </div>
+
+
                  <button type="submit" class="btn btn-dark">Editar Pokemon</button>
                 <a href="/" class="btn btn-dark">Volver</a>
 
