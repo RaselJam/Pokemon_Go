@@ -40,7 +40,7 @@ export const checkCredentials = (req, res) => {
       if (user) {
         req.session.currentUser = user[0];
         req.app.locals.isLoggedIn = true;
-        req.app.locals.isAdmin = user.role === 'ADMIN'
+        req.app.locals.isAdmin = user[0].role === 'ADMIN'
         req.app.locals.userName = user.userName;
         renderProfile(req, res)
       } else {
