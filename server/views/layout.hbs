@@ -17,6 +17,12 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Pokemon_Juego_de_Cartas_Coleccionables.svg/1280px-Pokemon_Juego_de_Cartas_Coleccionables.svg.png"  height="70" alt="Logo" class="d-inline-block align-top">
         </a>
 
+{{#if isLoggedIn}}
+    {{#if isAdmin}}
+            <h1>Admin</h1>
+    {{/if}}
+            <h1>{{userName}}</h1>
+{{/if}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,9 +56,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-light bg-danger" href="">FOOD</a>
                 </li>
-{{#if isAdmin}}
-hola
-{{/if}}
+
 
         </div>
     </nav>
@@ -61,7 +65,7 @@ hola
         {{{body}}}
     </main>
 
-   
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>

@@ -23,3 +23,7 @@ h1 {
 .profile {
   margin: 600px;
 }
+.navbar h1 {
+  margin-left: 1rem;
+  color: white;
+}
