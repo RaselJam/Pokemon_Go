@@ -1,6 +1,6 @@
 import express from 'express';
 import * as userlogic from '../controllers/user.controller.js';
-import { renderProfile, } from '../controllers/user.controller.js';
+
 const router = express.Router();
 
 router.get('/login', userlogic.renderLoginview)
@@ -16,7 +16,7 @@ router.use((req, res, next) => {
     next();
   } else {
     console.log("user is loged out redirect to login")
-    renderLoginview(req, res)
+    userlogic.renderLoginview(req, res)
   }
 })
 router.get('/profile', userlogic.renderProfile)
