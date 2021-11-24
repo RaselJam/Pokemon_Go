@@ -31,18 +31,33 @@ export const renderEditPokemonView = (req, res) => {
   console.log(pokemonId);
   PokemonModel.findById(pokemonId)
     .then(pokemon => {
-      res.render('POKEMONS/pokemon-details', pokemon)
+      res.render('POKEMONS/pokemon-edit', pokemon)
     })
     .catch(err => console.log("internal server  Error 500" + err))
 
 }
 export const updatePokemon = (req, res) => {
   const { pokemonId, name, description, attack, life, imageURL, lat, long } = req.body;
-  console.log("creating Pokemon..... : ", { pokemonId, name, description, attack, life, imageURL, lat, long });
+  console.log("Updating Pokemon..... : ", { pokemonId, name, description, attack, life, imageURL, lat, long });
   let location = { type: 'Point', coordinates: [+lat, +long] }
   PokemonModel.findByIdAndUpdate(pokemonId, { name, description, attack, life, imageURL, location }, { new: true })
     .then(pokemon => {
-      res.render('POKEMONS/pokemon-edit', pokemon)
+      res.render('POKEMONS/pokemon-details', pokemon)
+    })
+    .catch(err => console.log("internal server  Error 500" + err))
+}
+export const deletePokemon = (req, res) => {
+  const { pokemonId } = req.body
+  PokemonModel.findByIdAndRemove(pokemonId)
+    .then(deletedPokemon => {
+      res.render('control-panel')
+    })
+    .catch(err => console.log("internal server  Error 500" + err))
+}
+export const renderAllPokemonView = (req, res) => {
+  PokemonModel.find()
+    .then(pokemons => {
+      res.render('POKEMONS/pokemon-index', { pokemons })
     })
     .catch(err => console.log("internal server  Error 500" + err))
 
