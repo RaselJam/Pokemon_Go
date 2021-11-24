@@ -4,14 +4,26 @@
     <br>
     <a class="profile" href="/"> Comienza a explorar</a>
     <div>
-        <h2>Coins: </h2>
+        <h2>Coins: {{user.coins}} $</h2>
         <h2>POKEMONS</h2>
+        {{#each pokemons}}
+        <hr>
+        <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+        <h4>Nombre del Pokemon {{name}}</h4>
+        <p>Descripción del Pokemon {{description}}</p>
+        <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
+            </strong>{{life}} |</small>
+        
+        <img src={{imageURL}} height="150px">
+        
+        <hr>
+        
+        {{/each}}
 
         
     </div>
 
 </div>
-<a class="profile" href="/"> Comienza a explorar</a>
 <br>
 {{role}}
 {{!-- Recibimos Pokemons --}}
