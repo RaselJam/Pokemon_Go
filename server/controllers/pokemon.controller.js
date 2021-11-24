@@ -22,7 +22,7 @@ export const renderSinglePokemonView = (req, res) => {
   console.log(pokemonId);
   PokemonModel.findById(pokemonId)
     .then(pokemon => {
-      res.render('POKEMONS/pokemon-details',pokemon)
+      res.render('POKEMONS/pokemon-details', pokemon)
     })
     .catch(err => console.log("internal Error 500" + err))
 
