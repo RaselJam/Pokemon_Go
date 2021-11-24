@@ -1,5 +1,6 @@
 import express from 'express';
 import * as userlogic from '../controllers/user.controller.js';
+import { renderProfile, } from '../controllers/user.controller.js';
 const router = express.Router();
 
 router.get('/login', userlogic.renderLoginview)
