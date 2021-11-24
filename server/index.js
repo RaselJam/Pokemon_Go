@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import userRoutes from './routes/user.routes.js';
 import foodRoutes from './routes/food.routes.js'
+import pokemonRoutes from './routes/pokemon.routes.js'
 import hbs from 'hbs';
 import path from 'path';
 //const {pathname: root} = new URL('../src', import.meta.url)
@@ -39,7 +40,8 @@ app.set('view engine', 'hbs');
 app.set('views', ('./views'));
 app.use(express.static('public'))
 app.use('/users', userRoutes);
-app.use('/foods', foodRoutes)
+app.use('/foods', foodRoutes);
+ app.use('/pokemons',pokemonRoutes)
 app.get('/', (req, res) => { res.render('index') });
 
 
