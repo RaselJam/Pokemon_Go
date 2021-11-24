@@ -4,13 +4,13 @@
     <h1 style="font-weight: 100">Índice de los pokemons</h1>
 
     <!-- ***** CREA UNA FICHA DE LISTA POR CADA POKEMON **** -->
-    {{#each pokemon}}
+    {{#each pokemons}}
     <hr>
-    <a href="/coasters/{{id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+    <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
     <h4>Nombre del Pokemon {{name}}</h4>
     <p>Descripción del Pokemon {{description}}</p>
     <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
-        </strong>{{life}} | <strong>Life: </strong> {{life}} |</small>
+        </strong>{{life}} |</small>
     <hr>
 
     {{/each}}
