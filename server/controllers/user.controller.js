@@ -22,7 +22,7 @@ export const createUser = async (req, res) => {
   try {
     await newUserModel.save();
     console.log("success")
-    res.status(201).json(newUserModel);
+    res.render('login')
   }
   catch (error) {
     res.status(409).json({ message: error.message })

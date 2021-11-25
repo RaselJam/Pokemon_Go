@@ -31,7 +31,7 @@ router.use((req, res, next) => {
   }
   else next();
 })
-router.post('/all', userlogic.getUsers);
+router.post('/', userlogic.getUsers);
 router.patch('/toggle-admin', userlogic.toggleAdminRole)
 router.get('/controlpanel', userlogic.renderAdminContolPanel)
 
