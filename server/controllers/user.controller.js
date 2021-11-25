@@ -38,7 +38,6 @@ export const checkCredentials = (req, res) => {
   UserModel.find({ userName, password })
     .then(user => {
       if (user) {
-
         const id = new ObjectId.ObjectId(user[0]._id);
         console.log("user id is  :", id)
         req.session.currentUser = user[0];
@@ -70,10 +69,10 @@ export const logout = (req, res) => {
 }
 export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
-  console.log(("getting users poks:", user._id))
+
   let userPokemons = []
   pokemonLogic.getMyPokemons(user._id).then(result => {
-    console.log("Going to render :",result)
+
     res.render('user-profile', { user, pokemons: result })
 
   }).catch(err => console.log("Internal Error 500 " + err));
@@ -135,16 +134,21 @@ export const claimFood = (req, res) => {
   const { foodId, foodAmount } = req.body;
   console.log("Reached to ClaimFood with", foodId, foodAmount)
   let user = req.session.currentUser;
-  if (claim(foodId)) {
+  console.log("Current user is ", user)
+  let resultonClaimFood = claim(foodId)
+  console.log("resulonclaim", resultonClaimFood)
+  if (resultonClaimFood) {
     //all correct:
+    console.log("food deleted from db gong to update user coins  user id: " + user._id)
 
     UserModel.findByIdAndUpdate(user._id, { $inc: { 'coins': foodAmount } }, { new: true })
       .then(result => {
         console.log("resut on updating Coins after claim :", result)
-        res.status(200).json(result)
+        res.status(200).json({ result: true })
       })
       .catch(error => res.status(404).json({ message: "error on adjusting user coins amount : " + error }))
   } else {
+    console.log("claim(food) return falssy")
     res.status(500).json({ message: "Internal Server Error on deleting Food, see the console on server" })
   }
 }
