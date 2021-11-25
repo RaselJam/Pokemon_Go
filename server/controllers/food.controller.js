@@ -30,13 +30,22 @@ export const getFoodByFilter = (req, res) => {
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
 
 }
-export const renderFoodList = (req, res) => {
+export const renderFoodListByFilter = (req, res) => {
   const filter = req.body;
+
   FoodModel.find(filter)
     .then(foods => {
-      res.render('/FOOD/food', foods)
+      res.render('FOOD/food', foods)
     })
     .catch(err => res.status(500).json({ message: "Some internal Server Erorr 500:  " + err.mesage }))
+}
+export const renderAllFoodListView = (req, res) => {
+  FoodModel.find()
+    .then(foods => {
+      res.render('FOOD/food', { foods })
+    })
+    .catch(err => res.status(500).json({ message: "Some internal Server Erorr 500:  " + err.mesage }))
+
 }
 
 export const renderEditFoodView = (req, res) => {
