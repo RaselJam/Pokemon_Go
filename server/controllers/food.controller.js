@@ -69,7 +69,7 @@ export const updateFood = (req, res) => {
   console.log("updatig .....", { foodId, name, description, amount, location })
   FoodModel.findByIdAndUpdate(foodId, { name, description, amount, location }, { new: true })
     .then(data => {
-      res.status(200).json({ message: "food updtaed ", data })
+      res.redirect('/foods')
     })
     .catch(error => res.status(500).json({ message: "internal server Error 500 : " + error }))
 }

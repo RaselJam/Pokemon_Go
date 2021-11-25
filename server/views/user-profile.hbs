@@ -4,18 +4,25 @@
    <h1>Bienvenido  {{user.userName}}</h1>
     <h2>Coins: {{user.coins}} $</h2>
     <img src="https://fragugames.com/wp-content/uploads/2020/08/eb3e6eb121ca64bf7a90022a706d6a131a3c7838_hq.jpg">
-    <br>
+    <hr>
      <a href="/"> Comienza a explorar</a>
+     <br>
+     <hr>
       <h2>POKEMONS</h2>
         {{#each pokemons}}
         <hr>
-     <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
-       <h4>Nombre del Pokemon {{name}}</h4>
-        <p>Descripción del Pokemon {{description}}</p>
+       <h3>Nombre del Pokemon :  {{name}}</h3>
+        <h4>Descripción del Pokemon :  {{description}}</h4>
         <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
             </strong>{{life}} |</small>
+            <hr>
         
         <img src={{imageURL}} height="150px">
+        <hr>
+        <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+{{#if ../isAdmin}}
+        <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
+{{/if}}
         
         <hr>
         

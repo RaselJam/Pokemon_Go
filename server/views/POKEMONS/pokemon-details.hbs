@@ -5,8 +5,8 @@
 
     <h1 style="font-weight: 100">Descripción:</h1> <h3 style="color:red">{{description}}</h3>
     <br>
-    <p><strong>Speed: </strong> {{speed}} | <strong> Attack: </strong>{{attack}} | <strong> Life: </strong>{{life}}</p>
-    <p><strong>Owner: </strong>{{ownerId}}</p>
+    <h3> Speed:  {{speed}} |  Attack: {{attack}} |  Life: {{life}} </h3>
+    <h3><strong>Owner: </strong>{{ownerId}}</h3>
 
     <hr>
 
@@ -16,7 +16,6 @@
 {{#if isAdmin}}
     <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
 {{/if}}
-<br>
     <a href="/" class="btn btn-dark">HOME</a>
 
 </div>

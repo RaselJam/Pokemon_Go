@@ -2,6 +2,9 @@
 
 
     <h1 style="font-weight: 100">Índice de los pokemons</h1>
+{{#if isAdmin}}
+    <a href="/pokemons/create" class="btn btn-info">Crear Nuevos Pokemons</a>
+{{/if}}
 
     <!-- ***** CREA UNA FICHA DE LISTA POR CADA POKEMON **** -->
     {{#each pokemons}}

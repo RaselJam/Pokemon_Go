@@ -1,5 +1,3 @@
-Aqui se crean los pokemons.Para ADMIN.
-{{created}}
 <div class="container">
 
     <div class="row">
@@ -12,11 +10,11 @@ Aqui se crean los pokemons.Para ADMIN.
 
             <form action="/pokemons/create" method="POST">
                 <div class="form-group">
-                    <label for="name-input">Nombre</label>
+                    <label for="name-input">Name</label>
                     <input name="name" type="text" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="description-input">Descripción</label>
+                    <label for="description-input">Description</label>
                     <input name="description" type="text" class="form-control">
                 </div>
                 <div class="form-group">
@@ -43,8 +41,9 @@ Aqui se crean los pokemons.Para ADMIN.
                     <label for="long">Longitude</label>
                     <input name="long" type="text" class="form-control" placeholder="0.00000">
                 </div>
-                <button type="submit" class="btn btn-dark">Crear Pokemon</button>
-                <a href="/" class="btn btn-dark">Volver</a>
+                <br>
+                <button type="submit" class="btn btn-dark">Create Pokemon</button>
+                <a href="/pokemons" class="btn btn-dark">Back</a>
 
             </form>
         </div>

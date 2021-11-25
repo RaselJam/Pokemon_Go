@@ -95,8 +95,7 @@ export const renderUserListView = (req, res) => {
 
   UserModel.find()
     .then(data => {
-      //TODO Render a view instead of Json
-      res.status(200).json({ message: "List of all Users ", data });
+      res.render('user-list',{users:data})
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
 
@@ -107,7 +106,7 @@ export const renderAdminContolPanel = () => {
   res.render('control-panel')
 }
 /**
- *recives the ID of user andthe new role all in req.body and udate it in db
+ *recives the ID of user and the new role all in req.body and udate it in db
  * @param {*} req
  * @param {*} res
  */
