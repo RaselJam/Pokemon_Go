@@ -23,7 +23,7 @@ function loadFood(map) {
           '<div id="content">' +
           `<p  class="">${food.name}</p>` +
           `<p  class=""> amount : ${food.amount}</p>` +
-          `<button class="claimFoodBtn" data-id="${food._id}">Claim</button>` +
+          `<button class="claimFoodBtn" data-amount ="${food.amount}" data-foodid="${food._id}">Claim</button>` +
           "</div>";
         const marker = new google.maps.Marker({
           position: {
@@ -51,7 +51,16 @@ function loadFood(map) {
               console.log("in event")
               //Here call claim food API.
               //TODO add validation get current position we assume user is at correct location for now
-              console.log("item :", claimsBTNS[i])
+              const foodId = e.target.dataset.foodid;
+              const foodAmount = e.target.dataset.amount
+              console.log("datas : ", foodId, foodAmount)
+              //Llamar a API claim Food :/claimFood
+              axios({
+                method: 'post',
+                url: 'http://localhost:3000/users/claimFood',
+                data: { foodId, foodAmount }
+              })
+
 
             }, false);
           }
@@ -101,19 +110,9 @@ function loadPokemons(map) {
             map,
             shouldFocus: false,
           });
-
-          //
-
-          //
-
-
-
-
-
         });
 
       })
-
 
     }).catch(err => console.log("error on loading pokemons : ", err));
 }
@@ -130,8 +129,5 @@ function initMap() {
   });
   loadFood(map);
   loadPokemons(map)
-  //addEventListeners :
-  //TODO encapsulate it to seperate function
 
-  //
 }

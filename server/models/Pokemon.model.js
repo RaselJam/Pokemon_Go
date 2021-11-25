@@ -24,6 +24,7 @@ const pokemonSchema = mongoose.Schema({
   },
   imageURL: String,
   ownerId: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
+
   location: {
     type: {
       type: String,
