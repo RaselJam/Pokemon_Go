@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 const pokemonSchema = mongoose.Schema({
-  //TODOAdd more details  to the model
+
   name: {
     type: String,
     required: true,
@@ -33,7 +33,6 @@ const pokemonSchema = mongoose.Schema({
     },
     coordinates: {
       type: [Number],
-      //IronHack madrid as deafult :
       default: [40.392604, -3.698713],
       required: true
     }

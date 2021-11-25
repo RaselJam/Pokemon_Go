@@ -5,10 +5,10 @@ function loadFood(map) {
   let foods;
 
   let icon = {
-    url: "https://d29fhpw069ctt2.cloudfront.net/icon/image/120424/preview.svg", // url
-    scaledSize: new google.maps.Size(50, 50), // scaled size
-    origin: new google.maps.Point(0, 0), // origin
-    anchor: new google.maps.Point(0, 0) // anchor
+    url: "https://d29fhpw069ctt2.cloudfront.net/icon/image/120424/preview.svg", 
+    scaledSize: new google.maps.Size(50, 50),
+    origin: new google.maps.Point(0, 0), 
+    anchor: new google.maps.Point(0, 0) 
   };
 
   axios({
@@ -19,7 +19,6 @@ function loadFood(map) {
       foods = response.data.data
       console.log(foods)
       foods.forEach(food => {
-        // console.log("marking at ", food.location.coordinates[0], food.location.coordinates[1])
         const contentString =
           '<div id="content">' +
           `<p  class="">${food.name}</p>` +
@@ -45,7 +44,6 @@ function loadFood(map) {
             shouldFocus: false,
           });
 
-          //
           let claimsBTNS = document.getElementsByClassName('claimFoodBtn')
           console.log("HTML elements : ", claimsBTNS)
           for (var i = 0; i < claimsBTNS.length; i++) {
@@ -74,7 +72,6 @@ function loadFood(map) {
 
             }, false);
           }
-          //
         });
 
       })
@@ -97,10 +94,10 @@ function loadPokemons(map) {
           "</div>";
         console.log("marking at pokemons ", pokemon.location.coordinates[0], pokemon.location.coordinates[1])
         let icon = {
-          url: pokemon.imageURL, // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-          origin: new google.maps.Point(0, 0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
+          url: pokemon.imageURL, 
+          scaledSize: new google.maps.Size(50, 50), 
+          origin: new google.maps.Point(0, 0), 
+          anchor: new google.maps.Point(0, 0)
         };
 
         const marker = new google.maps.Marker({
@@ -147,9 +144,6 @@ function loadPokemons(map) {
             }, false);
           }
         });
-        //
-
-        //
       })
 
     }).catch(err => console.log("error on loading pokemons : ", err));

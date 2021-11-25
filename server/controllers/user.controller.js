@@ -44,18 +44,15 @@ export const checkCredentials = (req, res) => {
         req.app.locals.userName = user.userName;
         renderProfile(req, res)
       } else {
-        //Wrong password :
         res.render('login', { errorMessage: "wrong message" })
-        // res.status(401).json({ message: "wrong pass" })
       }
 
     }).catch(err => {
       console.log(err)
 
     })
-  // .catch(err => res.status(500).json({ err }))
 }
-//Authenticated :
+
 export const logout = (req, res) => {
   req.session.destroy(err => {
     if (err) next(err);
@@ -78,7 +75,7 @@ export const renderProfile = (req, res) => {
 
 }
 
-//Admin authorized :
+
 export const getUsers = (req, res) => {
   let filter = req.body;
   UserModel.find(filter)
@@ -151,8 +148,7 @@ export const claimFood = (req, res) => {
     res.status(500).json({ message: "Internal Server Error on deleting Food, see the console on server" })
   }
 }
-//
-//helpers
+
 export const getUsersList = () => {
 
   UserModel.find()
