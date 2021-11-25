@@ -1,27 +1,25 @@
-<div class="container">
-
 
     <h1 style="font-weight: 100">Índice de los pokemons</h1>
 {{#if isAdmin}}
     <a href="/pokemons/create" class="btn btn-info">Crear Nuevos Pokemons</a>
 {{/if}}
-
-    <!-- ***** CREA UNA FICHA DE LISTA POR CADA POKEMON **** -->
+<div class="container d-flex flex-wrap">
     {{#each pokemons}}
-    <hr>
-    <h1>Nombre del Pokemon : {{name}}</h1>
-    <h3>Descripción del Pokemon : {{description}}</h3>
-    <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
+
+        <div class="card bg-light" style="width: 450px margin:5px">
+        <h1>Nombre:</h1><h2 style="color: red;">{{name}}</h2>
+         <h3>Descripción:</h3><h4 style="color:seagreen">{{description}}</h4>
+        <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
         </strong>{{life}} |</small>
         <p>OwnerId: {{ownerId}}</p>
 
-        <img src={{imageURL}}  height= "150px">
-        <hr>
-  <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+        <img src={{imageURL}}  class="card-img-top">
+        <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
 {{#if ../isAdmin}}
-<a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
+     <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
 {{/if}}
-
-    <hr>
+     
+    </div>
 
     {{/each}}
+    </div>

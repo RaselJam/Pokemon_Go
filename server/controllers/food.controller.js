@@ -8,8 +8,6 @@ export const renderCreateFoodView = (req, res) => {
   res.render('FOOD/food-create')
 }
 
-
-//
 export const createFood = (req, res) => {
   const { name, description, amount, lat, long } = req.body;
 
