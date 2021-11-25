@@ -1,15 +1,16 @@
-<h1 class="imgProfile">Bienvenido  {{user.userName}}</h1>
-<div>
-    <img class="imgProfile" src="https://fragugames.com/wp-content/uploads/2020/08/eb3e6eb121ca64bf7a90022a706d6a131a3c7838_hq.jpg">
+<div class="container">
+ <div class="row justify-content-center">
+  <div class="col-md-9">
+   <h1>Bienvenido  {{user.userName}}</h1>
+    <h2>Coins: {{user.coins}} $</h2>
+    <img src="https://fragugames.com/wp-content/uploads/2020/08/eb3e6eb121ca64bf7a90022a706d6a131a3c7838_hq.jpg">
     <br>
-    <a class="profile" href="/"> Comienza a explorar</a>
-    <div>
-        <h2>Coins: {{user.coins}} $</h2>
-        <h2>POKEMONS</h2>
+     <a href="/"> Comienza a explorar</a>
+      <h2>POKEMONS</h2>
         {{#each pokemons}}
         <hr>
-        <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
-        <h4>Nombre del Pokemon {{name}}</h4>
+     <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+       <h4>Nombre del Pokemon {{name}}</h4>
         <p>Descripción del Pokemon {{description}}</p>
         <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
             </strong>{{life}} |</small>
@@ -20,9 +21,8 @@
         
         {{/each}}
 
-        
-    </div>
-
+  </div>
+ </div>
 </div>
 <br>
 {{role}}

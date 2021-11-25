@@ -6,13 +6,18 @@
     <!-- ***** CREA UNA FICHA DE LISTA POR CADA POKEMON **** -->
     {{#each pokemons}}
     <hr>
-    <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
-    <h4>Nombre del Pokemon {{name}}</h4>
-    <p>Descripción del Pokemon {{description}}</p>
+    <h1>Nombre del Pokemon : {{name}}</h1>
+    <h3>Descripción del Pokemon : {{description}}</h3>
     <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
         </strong>{{life}} |</small>
+        <p>OwnerId: {{ownerId}}</p>
 
         <img src={{imageURL}}  height= "150px">
+        <hr>
+  <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
+{{#if ../isAdmin}}
+<a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
+{{/if}}
 
     <hr>
 

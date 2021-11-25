@@ -1,20 +1,22 @@
 <div class="container">
 
-    <h1 style="font-weight: 100">Nombre de tu Pokemon:</h1><h2 style="font-family: Verdana; color:blue">{{name}}</h2>
+    <h1 style="font-weight: 100">Nombre de tu Pokemon:</h1>
+    <h2 style="font-family: Verdana; color:blue">{{name}}</h2>
 
-    <h1>Descripción:</h1>
-    <p>{{description}}</p>
+    <h1 style="font-weight: 100">Descripción:</h1> <h3 style="color:red">{{description}}</h3>
+    <br>
     <p><strong>Speed: </strong> {{speed}} | <strong> Attack: </strong>{{attack}} | <strong> Life: </strong>{{life}}</p>
     <p><strong>Owner: </strong>{{ownerId}}</p>
 
     <hr>
 
-    <img class="pokemonIMG" src ={{imageURL}} alt="pokemon">
+    <img src ={{imageURL}}  height= "350px" alt="pokemon">
     <br>
     <br>
 {{#if isAdmin}}
     <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
 {{/if}}
+<br>
     <a href="/" class="btn btn-dark">HOME</a>
 
 </div>
