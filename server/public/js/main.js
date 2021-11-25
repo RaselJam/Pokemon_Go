@@ -43,6 +43,7 @@ function loadFood(map) {
             map,
             shouldFocus: false,
           });
+
           //
           let claimsBTNS = document.getElementsByClassName('claimFoodBtn')
           console.log("HTML elements : ", claimsBTNS)
@@ -59,13 +60,22 @@ function loadFood(map) {
                 method: 'post',
                 url: 'http://localhost:3000/users/claimFood',
                 data: { foodId, foodAmount }
+              }).then(data => {
+                console.log(data.data.result)
+                if (data.data.result) {
+                  console.log("reached to remving from markers")
+                  marker.setMap(null);
+                }
+
               })
+                .catch(err => console.log("erro on claiming food: ", err))
 
 
             }, false);
           }
           //
         });
+
       })
     });
 }
@@ -82,6 +92,7 @@ function loadPokemons(map) {
         const contentString =
           '<div id="content">' +
           `<p >${pokemon.name}</p>` +
+          `<button class="claimPokemonBtn"  data-foodid="${pokemon._id}">Claim</button>` +
           "</div>";
         console.log("marking at pokemons ", pokemon.location.coordinates[0], pokemon.location.coordinates[1])
         let icon = {
@@ -111,7 +122,36 @@ function loadPokemons(map) {
             shouldFocus: false,
           });
         });
+        //
+        let claimsBTNS = document.getElementsByClassName('claimFoodBtn')
+        console.log("HTML elements : ", claimsBTNS)
+        for (var i = 0; i < claimsBTNS.length; i++) {
+          claimsBTNS[i].addEventListener('click', (e) => {
+            console.log("in event")
+            //Here call claim food API.
+            //TODO add validation get current position we assume user is at correct location for now
+            const pokemonId = e.target.dataset.pokemonId
+            //TODO start here
+            console.log("datas : ", pokemonId)
+            //Llamar a API claim Food :/claimFood
+            axios({
+              method: 'post',
+              url: 'http://localhost:3000/users/claimpokemon',
+              data: { pokemonId }
+            }).then(data => {
+              console.log(data.data.result)
+              if (data.data.result) {
+                console.log("reached to removing from markers")
+                marker.setMap(null);
+              }
 
+            })
+              .catch(err => console.log("erro on claiming pokemon: ", err))
+
+
+          }, false);
+        }
+        //
       })
 
     }).catch(err => console.log("error on loading pokemons : ", err));
@@ -129,5 +169,6 @@ function initMap() {
   });
   loadFood(map);
   loadPokemons(map)
+
 
 }

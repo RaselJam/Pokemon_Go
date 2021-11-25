@@ -82,8 +82,9 @@ export const deleteFood = (req, res) => {
     .catch(error => res.status(500).json({ message: "internal server Error 500 : " + error.mesage }))
 }
 export const claim = (foodId) => {
-  FoodModel.findByIdAndRemove(foodId)
+ return FoodModel.findByIdAndRemove(foodId)
     .then((deletedFood) => {
+      console.log("this Food deleted", deletedFood)
       onFoodDeleted(deletedFood)
       return true;
     })
