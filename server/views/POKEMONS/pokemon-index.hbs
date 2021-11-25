@@ -1,12 +1,12 @@
 
     <h1 style="font-weight: 100">Índice de los pokemons</h1>
 {{#if isAdmin}}
-    <a href="/pokemons/create" class="btn btn-info">Crear Nuevos Pokemons</a>
+    <a href="/pokemons/create" style="margin-bottom: 10px; margin-left:10px" class="btn btn-info">Crear Nuevos Pokemons</a>
 {{/if}}
 <div class="container d-flex flex-wrap">
     {{#each pokemons}}
 
-        <div class="card bg-light" style="width: 450px margin:5px">
+        <div class="card bg-light myshadow pokoemoncard" >
         <h1>Nombre:</h1><h2 style="color: red;">{{name}}</h2>
          <h3>Descripción:</h3><h4 style="color:seagreen">{{description}}</h4>
         <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
@@ -18,7 +18,7 @@
 {{#if ../isAdmin}}
      <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
 {{/if}}
-     
+
     </div>
 
     {{/each}}
