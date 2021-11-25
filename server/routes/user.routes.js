@@ -20,7 +20,7 @@ router.use((req, res, next) => {
   }
 })
 router.get('/profile', userlogic.renderProfile)
-router.patch('/claimFood', userlogic.claimFood);
+router.post('/claimFood', userlogic.claimFood);
 
 //Athorized only Admins :
 router.use((req, res, next) => {

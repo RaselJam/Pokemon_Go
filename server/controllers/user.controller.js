@@ -72,9 +72,13 @@ export const renderProfile = (req, res) => {
   let user = req.session.currentUser;
   console.log(("getting users poks:", user._id))
   let userPokemons = []
-  userPokemons = pokemonLogic.getMyPokemons(user._id);
-  console.log("my poks :", userPokemons)
-  res.render('user-profile', { user, pokemons: userPokemons })
+  pokemonLogic.getMyPokemons(user._id).then(result => {
+    console.log("Going to render :",result)
+    res.render('user-profile', { user, pokemons: result })
+
+  }).catch(err => console.log("Internal Error 500 " + err));
+
+
 }
 
 //Admin authorized :
@@ -130,14 +134,17 @@ export const modifyCoinsAmount = (req, res) => {
 export const claimFood = (req, res) => {
   //TODO Validation of location happens in Clinte Side. add server side validation later
   const { foodId, foodAmount } = req.body;
+  console.log("Reached to ClaimFood with", foodId, foodAmount)
   let user = req.session.currentUser;
   if (claim(foodId)) {
     //all correct:
+
     UserModel.findByIdAndUpdate(user._id, { $inc: { 'coins': foodAmount } }, { new: true })
       .then(result => {
+        console.log("resut on updating Coins after claim :", result)
         res.status(200).json(result)
       })
-      .catch(error => res.status(404).json({ message: "error on adjusting user coins amount : " + error.message }))
+      .catch(error => res.status(404).json({ message: "error on adjusting user coins amount : " + error }))
   } else {
     res.status(500).json({ message: "Internal Server Error on deleting Food, see the console on server" })
   }

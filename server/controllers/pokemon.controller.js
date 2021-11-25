@@ -1,5 +1,6 @@
 import express from 'express';
 import PokemonModel from "../models/Pokemon.model.js";
+import mongoose from 'mongoose';
 
 export const renderCreatePokemonView = (req, res) => {
 
@@ -105,12 +106,7 @@ export const getPokemonsList = () => {
  * @param {the User ID} ownerId
  */
 export const getMyPokemons = (ownerId) => {
-  PokemonModel.find({ ownerId: ownerId })
-    .then(data => {
-      return data;
-    })
-    .catch(err => {
-      console.log("intrenal Server Error" + err)
-      return false
-    })
+  console.log("Getting Pokemons of user : " + ownerId)
+  return PokemonModel.find({ ownerId })
+
 }

@@ -42,6 +42,7 @@ export const renderFoodListByFilter = (req, res) => {
 export const renderAllFoodListView = (req, res) => {
   FoodModel.find()
     .then(foods => {
+
       res.render('FOOD/food', { foods })
     })
     .catch(err => res.status(500).json({ message: "Some internal Server Erorr 500:  " + err.mesage }))
