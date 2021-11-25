@@ -5,14 +5,14 @@ import * as userLogic from '../controllers/user.controller.js';
 
 const router = express.Router();
 
-// router.use((req, res, next) => {
-//   if (req.session.currentUser) {
-//     next();
-//   } else {
-//     console.log("user is loged out redirect to login")
-//     userLogic.renderLoginview(req, res)
-//   }
-// })
+router.use((req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    console.log("user is loged out redirect to login")
+    userLogic.renderLoginview(req, res)
+  }
+})
 //CRUD
 //Create :
 //It uses post as we need to recive a possible filter in body

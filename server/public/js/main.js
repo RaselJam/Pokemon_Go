@@ -1,5 +1,6 @@
 
 
+
 function loadFood(map) {
   let foods;
 
@@ -163,9 +164,58 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
     center: ironhackMAD,
+
   });
   loadFood(map);
   loadPokemons(map)
+
+}
+//
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      //making marker:
+      const marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+
+      });
+      //
+
+      map.setCenter(pos);
+    },
+
+  );
+} else {
+  // Browser doesn't support Geolocation
+  alert("devise doesnt support Geolocation!")
+}
+
+
+//
+
+//Admin panel :
+let toggleRoleBtns = document.getElementsByClassName('toggleRoleBtn');
+console.log("buttons", toggleRoleBtns)
+for (let i = 0; i < toggleRoleBtns.length; i++) {
+
+  toggleRoleBtns[i].addEventListener("click", (e) => {
+    const userid = e.target.dataset.userid;
+    const role = e.target.dataset.role === 'ADMIN' ? 'Player' : 'ADMIN'
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/users/toggle-admin',
+      data: { targetUserId: userid, role }
+    })
+      .then(data => {
+        document.location.reload(true)
+
+      }).catch(err => console.log("error on Toggleing admin role", err))
+  })
 
 
 }

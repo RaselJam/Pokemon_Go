@@ -22,7 +22,7 @@ router.use((req, res, next) => {
 })
 router.get('/profile', userlogic.renderProfile)
 router.post('/claimFood', userlogic.claimFood);
-router.post('/claimpokemon',pokemonLogics.claimPokemon)
+router.post('/claimpokemon', pokemonLogics.claimPokemon)
 
 //Athorized only Admins :
 router.use((req, res, next) => {
@@ -35,7 +35,7 @@ router.use((req, res, next) => {
 })
 router.post('/', userlogic.getUsers);
 router.get('/', userlogic.renderUserListView)
-router.patch('/toggle-admin', userlogic.toggleAdminRole)
+router.post('/toggle-admin', userlogic.toggleAdminRole)
 router.get('/controlpanel', userlogic.renderAdminContolPanel)
 
 

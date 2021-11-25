@@ -92,6 +92,7 @@ export const renderUserListView = (req, res) => {
 
   UserModel.find()
     .then(data => {
+
       res.render('user-list', { users: data })
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
@@ -110,6 +111,7 @@ export const renderAdminContolPanel = () => {
 export const toggleAdminRole = (req, res) => {
   const { targetUserId, role } = req.body;
   console.log("Making Admin...", targetUserId, role)
+
   UserModel.findByIdAndUpdate(targetUserId, { role: role }, { new: true })
     .then(result => {
       res.status(200).json(result)
