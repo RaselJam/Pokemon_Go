@@ -1,21 +1,27 @@
-<div id="form">
-    <h2>No tienes una cuenta? Registrate! Es súper fácil </h2>
+<div class="container">
 
-    <form action="/users/signup" method="POST">
-
-        <label> Username
-            <input type="text" name="userName" placeholder="Username" />
-        </label>
-        <br>
-
-        <label>Password
-            <input type="password" name="password" placeholder="********" />
-        </label>
-
-        <button type="Submit">Sign up</button>
-
-        {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-        {{/if}}
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h1>Registrate aqui.</h1>
+            <br>
+            <hr>
+            <br>
+            <form action="/users/signup" method="POST">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="username" name="userName">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Registrate</button>
+            </form>
+            {{#if errorMsg}}
+            <p id="errorMessage">{{errorMsg}}</p>
+            {{/if}}
+        </div>
+    </div>
 </div>
+
+{{!-- <form action="/users/signup" method="POST"> --}}
