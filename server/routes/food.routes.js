@@ -19,7 +19,8 @@ const router = express.Router();
 router.get('/create', foodLogic.renderCreateFoodView)
 router.post('/create', foodLogic.createFood)
 //Read
-router.post('/', foodLogic.renderFoodList)
+router.post('/', foodLogic.renderFoodListByFilter)
+router.get('/', foodLogic.renderAllFoodListView)
 router.post('/jason', (req, res) => {
   foodLogic.getFoodByFilter(req, res)
 })

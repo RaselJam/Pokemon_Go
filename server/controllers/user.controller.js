@@ -82,9 +82,20 @@ export const getUsers = (req, res) => {
   let filter = req.body;
   UserModel.find(filter)
     .then(data => {
+      //TODO Render a view instead of Json
       res.status(200).json({ message: "List of Users with provided filter from client side", data, filter });
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
+}
+export const renderUserListView = (req, res) => {
+
+  UserModel.find()
+    .then(data => {
+      //TODO Render a view instead of Json
+      res.status(200).json({ message: "List of all Users ", data });
+    })
+    .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
+
 }
 export const renderAdminContolPanel = () => {
   const users = getUsersList();
