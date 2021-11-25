@@ -38,8 +38,6 @@ export const checkCredentials = (req, res) => {
   UserModel.find({ userName, password })
     .then(user => {
       if (user) {
-        const id = new ObjectId.ObjectId(user[0]._id);
-        console.log("user id is  :", id)
         req.session.currentUser = user[0];
         req.app.locals.isLoggedIn = true;
         req.app.locals.isAdmin = user[0].role === 'ADMIN'
@@ -94,7 +92,7 @@ export const renderUserListView = (req, res) => {
 
   UserModel.find()
     .then(data => {
-      res.render('user-list',{users:data})
+      res.render('user-list', { users: data })
     })
     .catch(err => res.status(500).json({ message: "internal server Error 500 :" + err.message }))
 
@@ -134,9 +132,7 @@ export const claimFood = (req, res) => {
   const { foodId, foodAmount } = req.body;
   console.log("Reached to ClaimFood with", foodId, foodAmount)
   let user = req.session.currentUser;
-  console.log("Current user is ", user)
   let resultonClaimFood = claim(foodId)
-  console.log("resulonclaim", resultonClaimFood)
   if (resultonClaimFood) {
     //all correct:
     console.log("food deleted from db gong to update user coins  user id: " + user._id)
@@ -144,6 +140,7 @@ export const claimFood = (req, res) => {
     UserModel.findByIdAndUpdate(user._id, { $inc: { 'coins': foodAmount } }, { new: true })
       .then(result => {
         console.log("resut on updating Coins after claim :", result)
+        reloadUser(req);
         res.status(200).json({ result: true })
       })
       .catch(error => res.status(404).json({ message: "error on adjusting user coins amount : " + error }))
@@ -164,7 +161,17 @@ export const getUsersList = () => {
       console.log("internal server Error")
       return;
     })
-
+}
+const reloadUser = (req) => {
+  let user = req.session.currentUser
+  if (user) {
+    UserModel.findById(user._id)
+      .then(reloaded => {
+        console.log("old user", user)
+        console.log("reloaded", reloaded)
+        req.session.currentUser = reloaded;
+      }).catch(err => console.log("internal server error : " + err))
+  }
 
 }
 export default router;

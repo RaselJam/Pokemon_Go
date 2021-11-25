@@ -83,12 +83,14 @@ export const claimPokemon = (req, res) => {
   //TODO add some validation about the correct location and claim
   const userId = req.session.currentUser._id;
   const { pokemonId } = req.body;
+  console.log("req.body on claimimng pokemon", req.body)
+  console.log("Got to server on claiming pokemon by this data :", userId, pokemonId)
   if (!userId) {
     res.redirect('/users/login');
   }
-  PokemonModel.findByIdAndUpdate(pokemonId, { location: { coordinates: [0, 0] }, ownerId: userId }, { new: true })
+  PokemonModel.findByIdAndUpdate(pokemonId, { ownerId: userId }, { new: true })
     .then(pokemon => {
-      res.status(200).json({ message: "Pokemon claimed susccessfully", data: pokemon })
+      res.status(200).json({ message: "Pokemon claimed susccessfully", result: true })
     }).catch(err => res.status(500).json({ message: "Internall Server Error", error: err }))
 
 }

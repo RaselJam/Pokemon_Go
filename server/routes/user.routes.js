@@ -1,5 +1,6 @@
 import express from 'express';
 import * as userlogic from '../controllers/user.controller.js';
+import * as pokemonLogics from '../controllers/pokemon.controller.js'
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.use((req, res, next) => {
 })
 router.get('/profile', userlogic.renderProfile)
 router.post('/claimFood', userlogic.claimFood);
+router.post('/claimpokemon',pokemonLogics.claimPokemon)
 
 //Athorized only Admins :
 router.use((req, res, next) => {
