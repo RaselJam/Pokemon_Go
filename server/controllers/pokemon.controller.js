@@ -10,7 +10,7 @@ export const createPokemon = (req, res) => {
   const { name, description, attack, life, imageURL, lat, long } = req.body;
   console.log("creating Pokemon..... : ", { name, description, attack, life, imageURL, lat, long });
   let location = { type: 'Point', coordinates: [+lat, +long] }
-  PokemonModel.create({ name, description, attack, life, imageURL, location })
+  PokemonModel.create({ name, description, attack, life, imageURL, location, ownerId: '' })
     .then(pokemon => {
       res.render('POKEMONS/pokemon-create', { created: true });
     })
@@ -67,11 +67,11 @@ export const renderAllPokemonView = (req, res) => {
 
 //return JASON :
 export const getPokemons = (req, res) => {
-   console.log("Reached end pint")
+  console.log("Reached end pint")
   PokemonModel.find()
     .then(pokemons => {
       console.log("brefor filtering owned", pokemons)
-      pokemons = pokemons.filter(pk => pk.ownerId === ''|| !pk.hasOwnProperty('ownerId'))
+      pokemons = pokemons.filter(pk => pk.ownerId === '' || !pk.hasOwnProperty('ownerId'))
       console.log("after filtering owned", pokemons)
       res.status(200).json({ message: "gotAllPokemons", data: pokemons })
     })
