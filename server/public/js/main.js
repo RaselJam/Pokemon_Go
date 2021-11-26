@@ -160,37 +160,46 @@ function initMap() {
     center: ironhackMAD,
 
   });
+
+  setInterval(() => {
+    loadUserLocation(map)
+  }, 1000);
   loadFood(map);
   loadPokemons(map)
 
+
 }
 //
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      //making marker:
-      const marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-      });
-      //
 
-      map.setCenter(pos);
-    },
+function loadUserLocation(map) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        //making marker:
+        new google.maps.Marker({
+          position: pos,
+          map: map,
+          });
+        //
 
-  );
-} else {
-  // Browser doesn't support Geolocation
-  alert("devise doesnt support Geolocation!")
+        map.setCenter(pos);
+      },
+      (err) => console.log(err)
+
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    alert("devise doesnt support Geolocation!")
+  }
 }
 
-
 //
-
+//#region ADMIN PANEL
 //Admin panel :
 let toggleRoleBtns = document.getElementsByClassName('toggleRoleBtn');
 console.log("buttons", toggleRoleBtns)
@@ -209,6 +218,6 @@ for (let i = 0; i < toggleRoleBtns.length; i++) {
 
       }).catch(err => console.log("error on Toggleing admin role", err))
   })
-
+//#endregion ADMIN PANEL
 
 }
