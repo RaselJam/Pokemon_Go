@@ -13,7 +13,7 @@ function loadFood(map) {
 
   axios({
     method: 'post',
-    url: 'http://localhost:3000/foods/jason',
+    url: 'https://pokemonih.herokuapp.com/foods/jason',
   })
     .then(function (response) {
       foods = response.data.data
@@ -57,7 +57,7 @@ function loadFood(map) {
               //Llamar a API claim Food :/claimFood
               axios({
                 method: 'post',
-                url: 'http://localhost:3000/users/claimFood',
+                url: 'https://pokemonih.herokuapp.com/users/claimFood',
                 data: { foodId, foodAmount }
               }).then(data => {
                 console.log(data.data.result)
@@ -81,7 +81,7 @@ function loadPokemons(map) {
   let pokemons;
   axios({
     method: 'get',
-    url: 'http://localhost:3000/pokemons/jason',
+    url: 'https://pokemonih.herokuapp.com/pokemons/jason',
   })
     .then(function (response) {
       pokemons = response.data.data
@@ -130,7 +130,7 @@ function loadPokemons(map) {
               //Llamar a API claim Food :/claimFood
               axios({
                 method: 'post',
-                url: 'http://localhost:3000/users/claimpokemon',
+                url: 'https://pokemonih.herokuapp.com/users/claimpokemon',
                 data: { pokemonId }
               }).then(data => {
                 console.log(data.data.result)
@@ -210,7 +210,7 @@ for (let i = 0; i < toggleRoleBtns.length; i++) {
     const role = e.target.dataset.role === 'ADMIN' ? 'Player' : 'ADMIN'
     axios({
       method: 'post',
-      url: 'http://localhost:3000/users/toggle-admin',
+      url: 'https://pokemonih.herokuapp.com/users/toggle-admin',
       data: { targetUserId: userid, role }
     })
       .then(data => {
