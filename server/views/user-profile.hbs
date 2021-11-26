@@ -3,7 +3,7 @@
   <div class="col-md-9">
    <h1>Bienvenido  {{user.userName}}</h1>
     <h2>Coins: {{user.coins}} $</h2>
-    <img src="https://fragugames.com/wp-content/uploads/2020/08/eb3e6eb121ca64bf7a90022a706d6a131a3c7838_hq.jpg">
+    <img class="myshadow" src="https://fragugames.com/wp-content/uploads/2020/08/eb3e6eb121ca64bf7a90022a706d6a131a3c7838_hq.jpg">
     <hr>
      <a href="/"> Comienza a explorar</a>
      <br>
@@ -16,16 +16,16 @@
         <small><strong>Speed: </strong> {{speed}} | <strong>Attack: </strong> {{attack}} | <strong>Life:
             </strong>{{life}} |</small>
             <hr>
-        
+
         <img src={{imageURL}} height="150px">
         <hr>
         <a href="/pokemons/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a>
 {{#if ../isAdmin}}
         <a href="/pokemons/update/{{_id}}" class="btn btn-primary">Edit</a>
 {{/if}}
-        
+
         <hr>
-        
+
         {{/each}}
 
   </div>

@@ -21,3 +21,42 @@ h1 {
   margin-left: 1rem;
   color: white;
 }
+.myshadow {
+  padding: 30px;
+  border-radius: 5%;
+  -webkit-box-shadow: 3px 1px 14px 11px rgba(41, 36, 36, 0.72);
+  box-shadow: 3px 1px 14px 11px rgba(66, 62, 62, 0.72);
+}
+.pokoemoncard {
+  width: 450px;
+  margin: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+}
+.pokoemoncard:hover {
+  transform: scale(105%);
+}
+.pokoemoncard::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: skewX(45deg) translateX(850px);
+  transition: 0.2s;
+}
+.pokoemoncard:hover::before {
+  transform: skewX(45deg) translateX(-350px);
+}
+.pokoemoncard a {
+  margin-top: 10px;
+}
+.pokoemoncard img {
+  transition: 0.4s ease-in-out;
+}
+.pokoemoncard img:hover {
+  transform: scale(120%);
+}
